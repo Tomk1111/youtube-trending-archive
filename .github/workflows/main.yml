@@ -1,0 +1,52 @@
+name: Fetch YouTube Trending Data
+
+on:
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+jobs:
+
+  fetch-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Fetch and save data
+      env:
+        API_URL: ${{ secrets.API_URL }}
+      run: |
+        python app.py $API_URL
+        
+    - name: Commit and push changes
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add data
+        git commit -m "Fetched latest YouTube trending data"
+        git push
+
+    - name: Upload kaggle dataset
+      uses: jaimevalero/push-kaggle-dataset@v3.2
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        KAGGLE_DATASET: ${{ secrets.KAGGLE_DATASET }}
+      with:
+        id: ${{ secrets.KAGGLE_DATASET }}
+        files: |
+          data/default
+          data/music
+          data/gaming
+          data/movies

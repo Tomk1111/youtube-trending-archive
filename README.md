@@ -1,6 +1,6 @@
 # YouTube Trending Archive
 
-A Python script to fetch and archive trending videos from YouTube using the platform's private API.
+A Python script to fetch and archive trending videos from private YouTube trending API.
 
 ## Video Object Properties
 

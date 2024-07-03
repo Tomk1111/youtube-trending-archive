@@ -51,5 +51,5 @@ To ensure regular data collection, the script is scheduled to run automatically 
 
 ## Kaggle Upload
 
-GitHub Actions has been setup to automatically upload latest YouTube trending data to a kaggle dataset. This is executed daily at 21:00 UTC (9:00 PM UTC).
+GitHub Actions has been setup to automatically upload latest YouTube trending data to a kaggle dataset. This is executed daily at 21:00 UTC (9:00 PM UTC). https://www.kaggle.com/datasets/pyuser11/youtube-trending-videos-updated-daily
 

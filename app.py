@@ -21,8 +21,6 @@ def save_csv_gz(data, data_type):
     print(file_path)
 
     fieldnames = data[0].keys()
-    print(",".join(fieldnames))
-    print()
     with gzip.open(file_path, "wt", encoding="utf-8") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()

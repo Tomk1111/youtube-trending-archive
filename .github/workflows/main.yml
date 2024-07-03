@@ -2,7 +2,7 @@ name: Fetch YouTube Trending Data
 
 on:
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '0 20 * * *' # 20:00 UTC (8:00 PM UTC)
   workflow_dispatch:
 
 jobs:
